@@ -1,0 +1,1 @@
+export type TiketStatus = 'ACTIVE' | 'USED' | 'CANCELLED';
