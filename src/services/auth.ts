@@ -5,13 +5,13 @@ import { AuthResponse } from "@/types/response/AuthResponse";
 
 export const authService = {
     login: (data: LoginRequest) =>
-            apiClient<AuthResponse>("/api/auth/login", {
+            apiClient<AuthResponse>("/auth/login", {
             method: "POST",
             body: JSON.stringify(data),
         }),
 
     register: (data: RegisterRequest) =>
-            apiClient<AuthResponse>("/api/auth/register", {
+            apiClient<AuthResponse>("/auth/register", {
             method: "POST",
             body: JSON.stringify(data),
         }),

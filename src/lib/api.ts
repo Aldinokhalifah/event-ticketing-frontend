@@ -18,7 +18,7 @@ export async function apiClient<T>(endpoint: string, options: RequestInit = {}):
     if (!response.ok) {
         if (response.status === 401) {
             document.cookie = 'token=; path=/; max-age=0';
-            window.location.href = '/login';
+            window.location.href = '/Login';
         }
         const message = data?.message ?? response.statusText ?? 'Terjadi kesalahan';
         throw new Error(message);
