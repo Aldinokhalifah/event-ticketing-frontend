@@ -8,8 +8,6 @@ export function useGetAllEvent() {
     return useQuery<EventResponse[]>({
         queryKey: ["events"],
         queryFn: () => eventService.getAll(),
-        staleTime: 10000,
-        gcTime: 30000
     });
 }
 
@@ -18,8 +16,6 @@ export function useGetEvent(id?: string) {
         queryKey: ["events", id],
         queryFn: () => eventService.getById(id as string),
         enabled: !!id,
-        staleTime: 10000,
-        gcTime: 30000
     });
 }
 
