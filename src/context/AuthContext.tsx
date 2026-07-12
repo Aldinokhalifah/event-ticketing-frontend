@@ -58,7 +58,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
             localStorage.removeItem("user");
             localStorage.removeItem("token");
             document.cookie = "token=; path=/; max-age=0";
-            window.location.href="/login";
+            window.location.href="/Login";
         }
     };
 
