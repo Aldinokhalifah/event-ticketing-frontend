@@ -14,7 +14,7 @@ export default function EventCard({ event, featured = false }: EventCardProps) {
 
     if (featured) {
         return (
-            <Link href={`/events/${event.id}`} className="block h-full group">
+            <Link href={`/event/${event.id}`} className="block h-full group">
                 <article className="relative h-full min-h-80 rounded-2xl overflow-hidden cursor-pointer">
                     {/* Gradient background */}
                     <div
@@ -78,7 +78,7 @@ export default function EventCard({ event, featured = false }: EventCardProps) {
     // ── Regular Card ──────────────────────────────────────────────────────────
 
     return (
-        <Link href={`/events/${event.id}`} className="block h-full group">
+        <Link href={`/event/${event.id}`} className="block h-full group">
             <article className="relative h-full min-h-40 rounded-2xl overflow-hidden cursor-pointer border border-slate-800/60 hover:border-slate-700/60 transition-colors duration-200">
                 {/* Gradient background */}
                 <div

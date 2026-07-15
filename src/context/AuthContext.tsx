@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useContext, useMemo, useState, ReactNode } from "react";
+import { createContext, useContext, useMemo, useState, useEffect, ReactNode } from "react";
 import { User } from "@/types/User";
 
 interface AuthContextType {
@@ -14,10 +14,6 @@ interface AuthContextType {
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 function getInitialUser() {
-    if (typeof window === "undefined") {
-        return null;
-    }
-
     const rawUser = localStorage.getItem("user");
     if (!rawUser) return null;
 
@@ -30,15 +26,22 @@ function getInitialUser() {
 }
 
 function getInitialToken() {
-    if (typeof window === "undefined") return null;
     const match = document.cookie.match(/(^|;)\s*token=([^;]+)/);
     return match ? decodeURIComponent(match[2]) : null;
 }
 
 export function AuthProvider({ children }: { children: ReactNode }) {
-    const [user, setUser] = useState<User | null>(getInitialUser);
-    const [token, setToken] = useState<string | null>(getInitialToken);
-    const [isLoading] = useState(false);
+    const [user, setUser] = useState<User | null>(null);
+    const [token, setToken] = useState<string | null>(null);
+    const [isLoading, setIsLoading] = useState(true);
+
+    useEffect(() => {
+        const initialUser = getInitialUser();
+        const initialToken = getInitialToken();
+        setUser(initialUser);
+        setToken(initialToken);
+        setIsLoading(false);
+    }, []);
 
     const setAuth = (user: User, token: string) => {
         setUser(user);
@@ -58,7 +61,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
             localStorage.removeItem("user");
             localStorage.removeItem("token");
             document.cookie = "token=; path=/; max-age=0";
-            window.location.href="/Login";
+            window.location.href = "/Login";
         }
     };
 
