@@ -1,5 +1,5 @@
 import { StatusBadgeProps } from '@/types/StatusBadgeProps';
-import { STATUS_CONFIG } from '@/utils/statusBadgeConfig';
+import { STATUS_CONFIG } from '@/utils/eventBadgeConfig';
 
 export default function StatusBadge({ status }: StatusBadgeProps) {
     const config = STATUS_CONFIG[status]

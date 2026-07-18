@@ -115,13 +115,13 @@ export default function Navbar() {
             return (
                 <div className="hidden md:flex items-center gap-2">
                     <Link
-                        href="/login"
+                        href="/Login"
                         className="px-4 py-1.5 text-sm font-medium text-slate-300 hover:text-white border border-slate-700 hover:border-slate-500 rounded-lg transition-colors duration-200"
                     >
                         Masuk
                     </Link>
                     <Link
-                        href="/register"
+                        href="/Register"
                         className="px-4 py-1.5 text-sm font-medium text-slate-950 bg-amber-400 hover:bg-amber-300 rounded-lg transition-colors duration-200"
                     >
                         Daftar
@@ -235,12 +235,12 @@ export default function Navbar() {
                 <div className="px-3 pb-3 pt-2 border-t border-slate-800/60">
                     {!user ? (
                         <div className="flex flex-col gap-2">
-                            <Link href="/login">
+                            <Link href="/Login">
                                 <button className="w-full px-4 py-2 text-sm font-medium text-slate-300 border border-slate-700 rounded-lg hover:bg-slate-800 transition-colors">
                                     Masuk
                                 </button>
                             </Link>
-                            <Link href="/register">
+                            <Link href="/Register">
                                 <button className="w-full px-4 py-2 text-sm font-medium text-slate-950 bg-amber-400 rounded-lg hover:bg-amber-300 transition-colors">
                                     Daftar
                                 </button>
