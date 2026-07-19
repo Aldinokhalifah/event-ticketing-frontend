@@ -1,5 +1,7 @@
+import AdminCheckinClient from "@/app/components/admin/checkins/AdminCheckinClient";
+
 export default function CheckinPageAdminClient() {
     return(
-        <h1>Checkin page admin</h1>
+        <AdminCheckinClient />
     )
 }

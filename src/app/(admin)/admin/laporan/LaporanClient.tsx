@@ -1,5 +1,7 @@
+import AdminLaporanClient from "@/app/components/admin/laporan/AdminLaporanClient";
+
 export default function LaporanPageAdminClient() {
     return(
-        <h1>Laporan Page Admin</h1>
+        <AdminLaporanClient />
     )
 }
