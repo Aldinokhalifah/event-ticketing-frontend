@@ -14,7 +14,7 @@ export function proxy(request: NextRequest) {
     }
 
     if (token && isPublicRoute) {
-        return NextResponse.redirect(new URL('/', request.url));
+        return NextResponse.redirect(new URL('/event', request.url));
     }
 
     // Untuk admin route — middleware tidak bisa decode JWT untuk cek role

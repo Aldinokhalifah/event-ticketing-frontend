@@ -1,16 +1,10 @@
-// components/EventFormModal.tsx
 'use client'
 
 import { useState, useEffect } from 'react'
 import { X, CalendarDays } from 'lucide-react'
-import { EventResponse } from '@/types/response/EventResponse'
 import { CreateEventRequest } from '@/types/request/CreateEventRequest'
 import { useCreateEvent, useUpdateEvent } from '@/hooks/useEvent'
-
-interface EventFormModalProps {
-    event?: EventResponse       // kalau ada → mode edit, kalau tidak → mode create
-    onClose: () => void
-}
+import { EventFormModalProps } from '@/types/EventFormModalProps'
 
 const EMPTY_FORM: CreateEventRequest = {
     nama: '',
