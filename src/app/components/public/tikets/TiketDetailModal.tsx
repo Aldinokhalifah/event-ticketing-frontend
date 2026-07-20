@@ -41,10 +41,10 @@ export default function TiketDetailModal({tiket,onClose,}: {tiket: TiketResponse
                             {parts.map((part, i) => (
                                 <span key={i} className="flex items-center gap-1.5">
                                     <span className="font-mono text-sm font-bold text-amber-400 tracking-widest">
-                                        {part.toUpperCase()}
+                                        {part}
                                     </span>
                                     {i < parts.length - 1 && (
-                                        <span className="text-slate-600">—</span>
+                                        <span className="text-slate-600">-</span>
                                     )}
                                 </span>
                             ))}

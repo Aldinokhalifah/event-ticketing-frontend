@@ -13,7 +13,7 @@ export function useGetAllTiket() {
 export function useCheckinTiket() {
     const qc = useQueryClient();
     return useMutation({
-        mutationFn: (id: string) => tiketService.checkinTiket(id),
+        mutationFn: (kodeTiket: string) => tiketService.checkinTiket(kodeTiket),
         onSuccess: () => {
             toast.success("Berhasil checkin tiket");
             qc.invalidateQueries({queryKey: ['tiket']})
