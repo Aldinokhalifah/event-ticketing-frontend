@@ -1,6 +1,7 @@
 import { TiketResponse } from "@/types/response/TiketResponse"
 import { STATUS_CONFIG } from "@/utils/tiketBadgeConfig"
 import { CheckCircle, Ticket, X, XCircle } from "lucide-react"
+import { QRCodeSVG as QRCode } from 'qrcode.react'
 
 export default function TiketDetailModal({tiket,onClose,}: {tiket: TiketResponse, onClose: () => void}) {
     const config = STATUS_CONFIG[tiket.status]
@@ -48,6 +49,17 @@ export default function TiketDetailModal({tiket,onClose,}: {tiket: TiketResponse
                                     )}
                                 </span>
                             ))}
+                            <div className="flex flex-col items-center justify-center">
+                                <div className="p-4 bg-white rounded-2xl shadow-lg border border-slate-200">
+                                    <QRCode 
+                                        value={tiket.kodeTiket} 
+                                        size={160} 
+                                        bgColor="#FFFFFF"
+                                        fgColor="#000000"
+                                        level="M"
+                                    />
+                                </div>
+                            </div>
                         </div>
                         <p className="text-xs text-slate-500 mt-3">
                             Tunjukkan kode ini kepada petugas

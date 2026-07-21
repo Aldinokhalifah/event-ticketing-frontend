@@ -5,12 +5,14 @@ import { QrCode, Search, XCircle, Ticket } from 'lucide-react'
 import { useCheckinTiket } from '@/hooks/useTiket'
 import { TiketResponse } from '@/types/response/TiketResponse'
 import CheckinResult from './CheckinResult'
+import QrScanner from './QrScanner'
 
 export default function AdminCheckinClient() {
     const [kodeInput, setKodeInput] = useState('')
     const [result, setResult] = useState<TiketResponse | null>(null)
     const [errorMsg, setErrorMsg] = useState('')
     const inputRef = useRef<HTMLInputElement>(null)
+    const [showScanner, setShowScanner] = useState(false)
 
     const { mutate: checkin, isPending } = useCheckinTiket()
 
@@ -32,6 +34,12 @@ export default function AdminCheckinClient() {
                 inputRef.current?.focus()
             },
         })
+    }
+
+    // Saat QR terbaca, langsung submit check-in
+    const handleScanResult = (kodeTiket: string) => {
+        setShowScanner(false)
+        handleCheckin(kodeTiket) // fungsi checkin yang sudah ada
     }
 
     const handleReset = () => {
@@ -62,21 +70,18 @@ export default function AdminCheckinClient() {
                 </div>
             </div>
 
-            {/* QR Placeholder — akan diisi scanner nanti */}
-            <div className="relative bg-slate-900/60 border border-dashed border-slate-700/60 rounded-2xl p-8 text-center space-y-3">
-                <div className="w-14 h-14 rounded-2xl bg-slate-800 border border-slate-700 flex items-center justify-center mx-auto">
-                    <QrCode size={24} className="text-slate-500" />
-                </div>
-                <p className="text-slate-400 text-sm font-medium">QR Scanner</p>
-                <p className="text-slate-500 text-xs">
-                    Akan ditambahkan — gunakan input manual di bawah untuk sementara
-                </p>
-                {/* Corner decorations */}
-                <div className="absolute top-4 left-4 w-5 h-5 border-l-2 border-t-2 border-amber-400/30 rounded-tl" />
-                <div className="absolute top-4 right-4 w-5 h-5 border-r-2 border-t-2 border-amber-400/30 rounded-tr" />
-                <div className="absolute bottom-4 left-4 w-5 h-5 border-l-2 border-b-2 border-amber-400/30 rounded-bl" />
-                <div className="absolute bottom-4 right-4 w-5 h-5 border-r-2 border-b-2 border-amber-400/30 rounded-br" />
-            </div>
+            {!showScanner ? (
+                <button 
+                    className="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 text-sm font-semibold transition-all duration-200 hover:scale-[1.01] active:scale-[0.99] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+                    onClick={() => setShowScanner(true)}>
+                    Buka Kamera
+                </button>
+            ) : (
+                <QrScanner
+                    onScan={handleScanResult}
+                    onClose={() => setShowScanner(false)}
+                />
+            )}
 
             {/* Divider */}
             <div className="flex items-center gap-3">
